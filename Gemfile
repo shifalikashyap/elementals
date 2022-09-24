@@ -63,3 +63,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "image_processing"
 gem 'kaminari'  
 gem 'ransack'
+gem 'net-smtp', require: false
