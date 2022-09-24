@@ -64,3 +64,5 @@ gem "image_processing"
 gem 'kaminari'  
 gem 'ransack'
 gem 'net-smtp', require: false
+gem 'net-imap', require: false
+gem 'net-pop', require: false
