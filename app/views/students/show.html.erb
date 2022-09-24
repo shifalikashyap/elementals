@@ -1,0 +1,26 @@
+<div class="col-lg-10">
+  <div class="card rounded-0 shadow mt-5">
+    <div class="card-body">
+      <h1>Student Details</h1>
+
+
+      <p><strong>Name: </strong><%= @student.name %></p>
+      <p><strong>Email: </strong><%= @student.email %></p>
+      <p><strong>Current_Status: </strong><%= @student.current_status %></p>
+      <p><strong>Contact_Number: </strong><%= @student.contact_number %></p>
+      <p><strong>Alternate_Contact_Number: </strong><%= @student.alternate_contact_number %></p>
+      <p><strong>Address: </strong><%= @student.address %></p>
+      <p><strong>Date_of_Birth: </strong><%= @student.date_of_birth %></p>
+      <p><strong>Passport_Photo: </strong><%= image_tag @student.passport_photo, style: "width: 100px; height: 100px"  %></p>
+      <p><strong>College: </strong><%= @student.college %></p>
+
+      <%= link_to 'Back', students_path, class: "btn btn-primary" %> 
+      <%= link_to 'Edit' , edit_student_path(@student), class: "btn btn-secondary" %>
+    </div>
+  </div>
+</div>
+
+<!-- 
+
+# header footer
+# to make proper bootstrap on every model -->

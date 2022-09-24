@@ -1,0 +1,9 @@
+<h1>Company Details</h1>
+
+<p><strong>Name: </strong><%= @company.name %></p>
+<p><strong>About: </strong><%= @company.about %></p>
+<p><strong>City: </strong><%= @company.city %></p>
+<p><strong>Country: </strong><%= @company.country %></p>
+<p><strong>Size: </strong><%= @company.size %></p>
+
+<%= link_to 'Back', companies_path %> | <%= link_to 'Edit' , edit_company_path(@company) %>
