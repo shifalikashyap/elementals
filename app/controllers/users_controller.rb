@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
 
   def index
-    @users = User.all.page(params[:page])
+    @users = User.order(created_at: :desc).page(params[:page])
   end
 
 
@@ -13,10 +13,14 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      redirect_to users_path
-    else
-      render :new
+    respond_to do |format|
+      if @user.save
+        format.js
+        format.html { redirect_to users_path, notice: 'User created at'}
+      else
+        format.js
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -32,17 +36,24 @@ class UsersController < ApplicationController
 
 
   def update
-    if @user.update(user_params)
-      redirect_to users_path
-    else
-      render :edit
+    respond_to do |format|
+      if @user.update(user_params)
+        format.js
+        format.html { redirect_to @user, notice: 'User updated'}
+      else
+        format.js
+        format.html{ render :edit, status: :unprocessable_entity }
+      end
     end
   end
 
 
   def destroy
     @user.destroy
-    redirect_to users_path
+    respond_to do |format|
+    format.html { redirect_to users_path, notice: "User was successfully destroyed"}
+    format.js
+    end
   end
 
   private

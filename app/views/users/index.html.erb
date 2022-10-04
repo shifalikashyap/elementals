@@ -2,7 +2,7 @@
 
 <h1>All Users</h1>
 
-<%= link_to 'New User', new_user_path, class: "btn btn-primary btn-lg" %>
+<%= link_to 'New User', new_user_path, class: "btn btn-primary btn-lg", data: { toggle: 'modal', target: '#newUserModal', remote: true } %>
 
 <table class ="table table-bordered mt-5">
   <thead>
@@ -13,27 +13,62 @@
       <th>Actions</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="usersTable">
     <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.role %></td>
-        <td><%= user.email %></td>
-        <td>
-        <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Actions
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-           <%= link_to 'View' , user, class: "dropdown-item" %>
-           <%= link_to 'Edit' , edit_user_path(user), class: "dropdown-item" %>
-           <%= link_to 'Delete', user, method: :delete, data: {confirm: 'Are you sure?'}, class: "dropdown-item" %>
-          </div>
-        </div>
-        </td>
-      </tr>
+    <%= render 'user_row', user: user %>
     <% end %>
   </tbody>
 </table>
 <%= paginate @users %>
+  <div class="modal fade" id="newUserModal" tabindex="-1" role="dialog"aria-labelledby="newUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newUserModalLabel">Create New User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div id="newUserform">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog"aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div id="editUserform">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="showUserModal" tabindex="-1" role="dialog"aria-labelledby="showUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="showUserModalLabel">User Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div id="showUserDetails">
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+

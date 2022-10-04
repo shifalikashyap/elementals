@@ -9,10 +9,13 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
+    respond_to do |format|
     if @question.save
-      redirect_to questions_path
+      format.js
+      format.html { redirect_to questions_path, notice: 'Question created'}
     else
-      render :new
+      format.js
+      format.html { render :new, status: :unprocessable_entity }
     end
   end
 

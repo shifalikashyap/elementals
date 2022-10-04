@@ -1,0 +1,19 @@
+<tr id="userRow_<%= user.id %>">
+    <td><%= user.name %></td>
+  <td><%= user.role %></td>
+  <td><%= user.email %></td>
+  <td>
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Actions
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+     <%= link_to 'View' , user, class: "dropdown-item", data: {
+      toggle: 'modal', target: '#showUserModal', remote: true
+     } %>
+     <%= link_to 'Edit' , edit_user_path(user), class: "dropdown-item", data: {toggle: 'modal', target: '#editUserModal', remote: true } %>
+     <%= link_to 'Delete', user, method: :delete, data: {confirm: 'Are you sure?', remote: true}, class: "dropdown-item"%>
+    </div>
+  </div>
+  </td>
+</tr>
