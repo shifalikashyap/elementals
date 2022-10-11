@@ -1,25 +1,24 @@
-<%= form_with model: @question do |form| %>
+
+<%= form_with(model: @question, local: false) do |form| %>
+
+  <div class="modal-body">
+    <div class="form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: "form-control form-control-lg" %>
+    </div>  
 
 
-  <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: "form-control form-control-lg" %>
-    <% @question.errors.full_messages_for(:title).each do |message| %>
-    <p class="text-danger"><%= message %></p>
-    <% end %>
+    <div class= "form-group">
+      <%= form.label :answer %>
+      <%= form.text_field :answer, class: "form-control form-control-lg"  %>
+    </div>
   </div>
 
 
-  <div class= "form-group">
-    <%= form.label :answer %>
-    <%= form.text_field :answer, class: "form-control form-control-lg"  %>
-    <% @question.errors.full_messages_for(:answer).each do |message| %>
-    <p class="text-danger"><%= message %></p>
-    <% end %>
-  </div>
-
-
-  <div class="form-group">
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary btn-lg close-modal" data-dismiss="modal">Close</button>
     <%= form.submit class: "btn btn-primary btn-lg" %>
   </div>
+
+  
 <% end %>

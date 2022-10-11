@@ -1,0 +1,6 @@
+<% if @question.errors.any? %>
+ $("#errorArea").html("<%= escape_javascript render('error', question: @question)%>")
+ <% else %>
+ $("#questionRow_<%= @question.id %>").replaceWith("<%= escape_javascript render('question_row', question: @question)%>");
+ $(".close-modal").click();
+<% end %>

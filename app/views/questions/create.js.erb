@@ -1,0 +1,6 @@
+<% if @question.errors.any? %>
+ $("#errorArea").html("<%= escape_javascript render('error', question: @question)%>")
+ <% else %>
+ $("#questionsTable").prepend("<%= escape_javascript render('question_row', question: @question)%>");
+ $(".close-modal").click();
+<% end %>

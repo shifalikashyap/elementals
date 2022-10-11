@@ -1,32 +1,64 @@
 <div class="col-lg-12 mt-3">
   <h1>Questions and Answer</h1>
 
-  <%= link_to 'New Question', new_question_path, class: "btn btn-primary btn-lg" %>
+  <%= link_to 'New Question', new_question_path, class: "btn btn-primary btn-lg", data: { toggle: 'modal', target: '#newQuestionModal', remote: true } %>
 
-  <div id="accordion">
-    <% @questions.each_with_index do |question, index| %>
-      <div class="card mt-3 mb-2">
-        <div class="card-header" id="headingOne">
-          <h5 class="mb-0">
-            <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_<%= index %>" aria-expanded="true" aria-controls="collapse_<%= index %>">
-              <h4><%= question.title %></h4>
-            </button>
-          </h5>
-        </div>
 
-        <div id="collapse_<%= index %>" class="collapse" aria-labelledby="heading_<%= index %>" data-parent="#accordion">
-          <div class="card-body">
-            <p class="lead"><%= truncate(question.answer, length: 100) %></p>
-            <% if question.answer.length > 100 %>
-              <%= link_to 'View Full Answer' , question, class: "btn btn-info" %>
-            <% end %>
-            <%= link_to 'Edit' , edit_question_path(question), class: "btn btn-success" %>
-            <%= link_to 'Delete', question, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %>
-          </div>
-        </div>
+  
+    <div id="accordion">
+      <% @questions.each do |question| %>
+        <%= render "questions/question_row", question: question %>
+      <% end %>
+    </div>
+  
+
+<%= paginate @questions %>
+
+
+<div class="modal fade" id="newQuestionModal" tabindex="-1" role="dialog"aria-labelledby="newQuestionModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newQuestionModalLabel">Create New Question</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    <% end %>
+      <div id="newQuestionform">
+      </div>
+    </div>
   </div>
 </div>
 
+<div class="modal fade" id="editQuestionModal" tabindex="-1" role="dialog"aria-labelledby="editQuestionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editQuestionModalLabel">Edit Question</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div id="editQuestionform">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="modal fade" id="showQuestionModal" tabindex="-1" role="dialog"aria-labelledby="showQuestionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="showQuestionModalLabel">Show Full Answer  </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="showQuestionDetails">
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

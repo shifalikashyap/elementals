@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :set_question, only: %i[show edit update destroy]
+  
   def index
     @questions = Question.all.page(params[:page])
   end
@@ -18,34 +20,44 @@ class QuestionsController < ApplicationController
       format.html { render :new, status: :unprocessable_entity }
     end
   end
+end
 
   def show
-    @question = Question.find(params[:id])
+    
   end
 
   def edit
-    @question = Question.find(params[:id])
+    
   end
 
   def update
-    @question = Question.find(params[:id])
+    respond_to do |format|
     if @question.update(question_params)
-      redirect_to questions_path
+      format.js
+      format.html { redirect_to @question, notice: 'Question updated'}
     else
-      render :edit
+      format.js
+      format.html{ render :edit, status: :unprocessable_entity }
     end
   end
+end
 
   def destroy
-    @question = Question.find(params[:id])
-    @question.destroy
-    redirect_to questions_path
+     @question.destroy
+     respond_to do |format|
+      format.js
+      format.html { redirect_to questions_path, notice: "Question was successfully destroyed"}
   end
+end
 
   private
 
   def question_params
     params.require(:question).permit(:title, :answer)
+  end
+
+  def set_question
+    @question = Question.find(params[:id])
   end
 end
 
