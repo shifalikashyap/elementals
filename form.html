@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <body>
+
+    <form action="">
+      <div>
+        E-mail: <input type="email" id="myEmail" name="usermail">
+        <!-- DISPLAY EMAIL ERROR HERE -->
+      </div>
+      <div>
+        Name: <input type="text" id="myName" name="username">
+        <!-- DISPLAY NAME ERROR HERE -->
+      </div>
+      <button type="submit" onclick="myFunction()">Submit</button>
+    </form>
+
+    <br>
+
+    <script>
+      function myFunction() {
+        var email = document.getElementById("myEmail").value
+
+        if(email === "" || email === undefined) {
+          alert('please enter the email')
+        }
+        
+        var name = document.getElementById("myName").value
+        if(name === "" || name === undefined) {
+          alert('please enter the name')
+        }
+      }
+    </script>
+
+  </body>
+</html>
